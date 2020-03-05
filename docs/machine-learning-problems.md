@@ -63,3 +63,7 @@ If we want the MSE for all possible input, we take the expected value of this wi
 
 Throughout this description, we have assumed there is no irreducible error. However there usually is, and this 
 would reveal itself as a constant variance in the end resulting MSE.
+
+It is also important to note that this derivation of MSE is not for a specific trained model, but rather 
+describes the expected model MSE, it's "potential". If you only deal with a single estimation function (which is usually the case), you can use the squared error between your estimator and the true function *as an estimate of the inner expectation* (that iterates over all possible datasets), and measure the MSE only 
+based on your estimator.
