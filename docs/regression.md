@@ -46,6 +46,32 @@ A parametric approach generally outperforms non-parametric if we have low amount
 to learn the fundamental structure as much as non-parametric does. Linear Regression is also easier to interpret
 than KNN.
 
-## Regularization
+## Regularization in Ridge Regression
+Regularization is the act of adding more information in order to reduce overfitting. Shrinkage is a 
+common type of regularization, where you add a penalty to the (squared) coefficients of different features so 
+that overly sensitive features get penalized. The total sum of penalties for the different features 
+is then added on top of the RSS, and it is this total value that is minimized. The shrinkage 
+parameter (usually lambda) is crucial in determining how aggressive the penalty should be; 
+generally, you use Cross Validation (or Gradient Descent somehow) to find the best lambda.
 
+This modified regression method is called Ridge Regression. When we penalize the squared 
+coefficient of a feature, we are saying that we prefer that "if you don't greatly reduce the RSS, 
+don't bother having a high coefficient". So essentially we are "shrinking" variables that aren't 
+very important.
 
+Another thing is that ridge regression allows estimation even if you do not have enough data points
+to find one hyperplane (e.g only have 1 point in 2D, cannot span a line), since ridge regression 
+asks about information aside from just the datapoints.
+
+## Regularization in Lasso
+Lasso (Least Absolute Shrinkage and Selection Operator) makes a small tweak to Ridge Regression;
+instead of taking the squared coefficient, we take the absolute value of the coefficient (which becomes the l1 norm, i.e the norm we get from walking 1 feature at a time, like a taxicab taking 1 road at a time).
+
+The big difference between Lasso and Ridge is that Ridge can never truly disregard a feature, only 
+reduce the constant to a very small value for a feature; Lasso can set a feature coefficient to 0.
+This is due to the fact that the function to minimize will have a derivative for which a large
+enough lambda can cause the optimal coefficient to become 0.
+
+In other words, Lasso provides both regularization and feature selection. As a general rule, Ridge 
+is better than Lasso if most variables are relevant, and Lasso is better if most variables are 
+irrelevant. And Lasso makes it easier to interpret the model as it becomes more sparse/less complex.
