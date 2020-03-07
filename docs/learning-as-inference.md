@@ -44,7 +44,7 @@ This is then used to estimate <img src="https://render.githubusercontent.com/ren
 In MLE for classification, we assume independence of classes; i.e samples belonging to one class do not influence the estimate 
 obtained for another class. For instance, just because one class is more common than another, it should impact the probability 
 of predicting a class, but we assume that it doesn't for the sake of parameter estimation. However we may still take the 
-prior into consideration during classification; the prior is however disregarded during parameter estimation.
+prior into consideration during classification (if we use MAP instead of ML for classification); the prior is however disregarded during parameter estimation.
 
 From the MLE framework, you can justify/derive common estimates. For Bernoulli, the MLE estimate of 
 <img src="https://render.githubusercontent.com/render/math?math=\lambda">
