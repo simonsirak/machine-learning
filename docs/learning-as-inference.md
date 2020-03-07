@@ -77,3 +77,43 @@ Essentially, Logistic Regression is used to perform binary classification by che
 is > or < than 0.5. The model is discriminative, it models the posterior directly. The lambda parameter (for the
 underlying Bernoulli distribution) is optimized by assuming it follows a sigmoid function with a weight vector multiplied 
 by an input observation. Optimizing for the weight w has no closed form solution, so gradient descent has to be used.
+
+## Maximum A Posteriori
+Maximum A Posteriori (MAP) is a point estimation method which maximizes the posterior, instead of the likelihood. This requires 
+knowledge about the prior probability. For an analytical solution, you often choose the conjugate prior of the likelihood. To 
+maximize with respect to the parameters, you can do a very similar approach as for ML; logarithmize the function to be optimized
+(this does not change the arg max), then find the maximum by differentiating and setting the derivative to 0.
+
+When using a gaussian prior (and gaussian for the error) in linear regression, we get ridge regression (if we substitute the rather
+involved constant factor with lambda). If we use a laplacian prior, we get Lasso Regression.
+
+The good thing with both ML and MAP is that once we've estimated the parameters, everything can be assumed to be known, assuming 
+there is a true parameter value that represents the underlying model.
+
+### Limitations of MAP
+MAP essentially shifts the problem of estimating the parameters towards defining the parameters of the priors (this is the same as 
+having to choose a good lambda in ridge regression; we've simply shifted the problem elsewhere). Furthermore, in the end we have 
+calculated a posterior given parameters, but we actually want to calculate a posterior given the dataset; the parameters can only 
+do so well in representing the dataset, since learning the posterior from the dataset in a parametric model assumes a certain 
+structure to the dataset.
+
+Another issue with MAP is that we have no measure of uncertainty (i.e how uncertain are we when we make a new classification? No way 
+to tell). Bayesian estimation gives a measure of uncertainty!
+
+## Non-Parametric Approaches: Bayesian Estimation
+In this approach, there is no assumption that there is one true parameter value. Instead, we estimate  
+<img src="https://render.githubusercontent.com/render/math?math=Pr(\theta|D)">
+and use that to marginalize over theta to obtain posterior
+<img src="https://render.githubusercontent.com/render/math?math=Pr(y|x,\theta)">
+which will look like 
+<img src="https://render.githubusercontent.com/render/math?math=Pr(y|x,D)=\int_{\theta \in \Theta}Pr(y|x,\theta,D)Pr(\theta|x, D)d\theta">. It is pretty safe to assume the conditional of Y given W is independent of D, i.e 
+the data does not give more information once we have been given the weight. So we can drop D from the posterior in the integral. It is 
+also pretty safe to say that w is independent of the x to-be-classified, so we can drop that from the right-most factor in the integral. 
+So we get
+<img src="https://render.githubusercontent.com/render/math?math=Pr(y|x,D)=\int_{\theta \in \Theta}Pr(y|x,\theta)Pr(\theta|D)d\theta">.
+
+In order to calculate this, we would still need to model the parameters based on some assumed values (e.g parameter is distributed Gaussian
+with assumed mean and covariance matrix). This will give us a prior of the parameter, which is used to obtain the parameter posterior in the integral. Furthermore, we need to model the conditional 
+of Y given X to have a distribution that is based on the parameter. This will give us the Y posterior in the integral. 
+
+From these two probabilities, it is raw probability theory and calculus (pretty brutal though) until you finally the final posterior that you want.
