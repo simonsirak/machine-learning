@@ -57,3 +57,20 @@ input vector along each basis vector, then we sum that together and we get the s
 
 > Specifically, we get the sum of squared components of each of the basis vectors for the subspace. The components describe the projection of the input vector onto each dimension of the subspace. So we have taken the squared distance of the projection of the input vector onto the subspace. Taking the square root of this input will thus 
 give us the length of the projection onto the subspace, neat!
+
+## Fisher's Discriminant Rule ("Fisher's method" in DD2421 slides)
+This is a type of LDA.
+
+We can get an idea of the overlap by taking the ratio of *within-class variance* (summing up the sampled variance within each class and dividing by total number of samples) and *between-class variance* (summing up sampled variance between each class mean and the overall mean, each term scaled by the number of samples in that class, then the sum is divided by the number of total samples. The ratio is *within/between*.
+
+Fisher's rule is to maximize this ratio, which is done with the help of the Scatter matrix (an estimator for the 
+covariance matrix). We can then imagine that we have some matrix A representing the basis vectors for our new subspace. The idea is to get the scatter matrix *as seen after in the basis represented by A* of each class by transforming the original scatter matrices of each class using A and its transpose. We then optimize the ratio described earlier, but using the transformed *within* and *between* scatter matrices. It turns out the eigenvectors of the final matrix (Sw inverse times Sb) are precisely the vectors that best expresses the separation of classes. 
+
+## A Clarification of Usage of PCA and LDA
+LDA and (class-wise) PCA both try to accomplish the same thing; find basis vectors that best represent the characteristics of the problem. PCA tries to do this by extracting the relevant features in a dataset (usually for a given class), whereas LDA tries to find vectors that separate the classes as much as possible according to some discriminant rule (usually variance/separation-related).
+
+Another way to think about it is that PCA tries to maintain as much structural similarity as before the feature selection. LDA tries to cluster together data from the same class. This makes LDA good for classification (although PCA is still good for classification as well, [particularly if there is little data per class][1]
+
+So in reality, PCA and LDA are just ways to perform dimensionality reduction. PCA takes the most important features into a subspace for each class, which can then be used to perform subspace methods or prototype-based classificaiton. LDA creates a *single* subspace using whatever dimension you want, which can be used to perform classification tasks on (so this single subspace becomes the domain of the classification problem, all input is transformed into this subspace first). 
+
+[1]: https://sebastianraschka.com/Articles/2014_python_lda.html#principal-component-analysis-vs-linear-discriminant-analysis
