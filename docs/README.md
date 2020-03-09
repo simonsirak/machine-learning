@@ -9,5 +9,5 @@
 6. [Artificial Neural Networks](artificial-neural-networks.md)
 9. [Support Vector Machines (NO NOTES YET)](README.md)
 10. [Ensemble Methods (NO NOTES YET)](README.md)
-11. [Dimensionality Reduction and Subspaces)](dimensionality-reduction-subspaces.md)
+11. [Dimensionality Reduction and Subspaces](dimensionality-reduction-subspaces.md)
 
