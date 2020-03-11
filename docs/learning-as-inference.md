@@ -41,10 +41,11 @@ We want to optimize the likelihood of getting the dataset given the choice of pa
 <img src="https://render.githubusercontent.com/render/math?math=\theta_{ML}=arg\ max\ P(D|\theta)">.
 This is then used to estimate <img src="https://render.githubusercontent.com/render/math?math=Pr(y|x,D)\approx Pr(y|x,\theta_{ML})">
 
-In MLE for classification, we assume independence of classes; i.e samples belonging to one class do not influence the estimate 
-obtained for another class. For instance, just because one class is more common than another, it should impact the probability 
-of predicting a class, but we assume that it doesn't for the sake of parameter estimation. However we may still take the 
-prior into consideration during classification (if we use MAP instead of ML for classification); the prior is however disregarded during parameter estimation.
+> In classification, we assume independence of classes; i.e samples belonging to one class do not influence the estimate 
+> obtained for another class. This is done since classification has discrete Y, and it is easier to formulate a model for each 
+> class instead. <!--For instance, just because one class is more common than another, it should impact the probability 
+> of predicting a class, but we assume that it doesn't for the sake of parameter estimation. However we may still take the 
+> prior into consideration during classification (if we use MAP instead of ML for classification); the prior is however disregarded during parameter estimation.-->
 
 From the MLE framework, you can justify/derive common estimates. For Bernoulli, the MLE estimate of 
 <img src="https://render.githubusercontent.com/render/math?math=\lambda">
