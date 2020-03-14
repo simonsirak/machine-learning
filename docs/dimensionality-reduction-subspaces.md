@@ -40,7 +40,7 @@ Imagine using a set of vectors as a prototype, instead of only a mean vector, fo
 that represents possible inputs for that class). In a sense, we are compressing the possible inputs of that class 
 into a subspace defined by prior analysis.
 
-> One way to find the set of spanning vectors for a specific class is by performing PCA on the input data belonging to that class, finding the principal components, and choosing the first *p* principal components (i.e those axes that give the largest variation of the features within a class). By only considering a subset of the principal components, we effectively extract the feature combinations that give most variation in the data, i.e the feature combinations that explains most characteristics of a feature belonging to that class. 
+> One way to find the set of spanning vectors for a specific class is by performing PCA on the input data belonging to that class, finding the principal components, and choosing the first *p* principal components (i.e those axes that give the largest variation of the features within a class). By only considering a subset of the principal components, we effectively extract the feature combinations that give most variation in the data, i.e the feature combinations that explains most characteristics of an input belonging to that class. 
 >
 > It is important to remember to not have a too small *p*, but not too large *p* either (may lead to overlap of input vectors between different classes), since this will create 
 > a too simple/too complex model, which directly relates to the Bias-Variance tradeoff. The principal components 
