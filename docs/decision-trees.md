@@ -32,7 +32,7 @@ Information gain is the expected difference in entropy as a result of asking abo
 any single step.
 
 Gini impurity is an alternative to entropy,
-<img src="https://render.githubusercontent.com/render/math?math=1-\sum_i{p_i}">
+<img src="https://render.githubusercontent.com/render/math?math=1-\sum_i{p_i^2}">
 , which peaks stronger at equal probabilities.
 
 ## Pruning
